@@ -1,7 +1,7 @@
-import { Locator, Page} from "@playwright/test";
+import type { Locator, Page} from "@playwright/test";
 import { IRoutablePage } from "../page.interface";
-import {BASE_URL, Timeout, TimeoutTypes} from "../../constants";
-import HeaderComponent from "../components/header.component";
+import {BASE_URL} from "../../constants";
+import NavComponent from "../components/nav.component";
 import GalleryComponent from "../components/gallery.component";
 
 export default class HomePage implements IRoutablePage {
@@ -9,12 +9,12 @@ export default class HomePage implements IRoutablePage {
     private readonly page: Page;
     
     // Composed POMs are public
-    public readonly header: HeaderComponent;
+    public readonly nav: NavComponent;
     public readonly gallery: GalleryComponent;
     
     public constructor(page: Page) {
         this.page = page;
-        this.header = new HeaderComponent(page);
+        this.nav = new NavComponent(page);
         this.gallery = new GalleryComponent(page);
     }
 

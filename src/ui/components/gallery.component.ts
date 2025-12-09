@@ -1,4 +1,4 @@
-import {Locator, Page} from "@playwright/test";
+import type {Locator, Page} from "@playwright/test";
 import {Timeout, TimeoutTypes} from "../../constants";
 
 export default class GalleryComponent {

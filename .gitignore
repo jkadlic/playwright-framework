@@ -1,4 +1,5 @@
 .idea/
+.context/
 .env
 
 # Playwright

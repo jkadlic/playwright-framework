@@ -1,8 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
 
 import { config } from 'dotenv';
-import { resolve } from 'path';
+import { resolve, join } from 'path';
 config({ path: resolve(__dirname, '.env') });
+
+const CONTEXT_STATE_PATH: string = join(__dirname, "./.context/state.json");
 
 export default defineConfig({
   testDir: './tests',
@@ -21,13 +23,22 @@ export default defineConfig({
     headless: false,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    storageState: CONTEXT_STATE_PATH
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'authenticate',
+      testMatch: '**/authenticate.setup.ts',
+      use: {
+        storageState: { cookies: [], origins: [] }
+      }
+    },
+    {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      dependencies: ['authenticate']
     },
 
     // {
