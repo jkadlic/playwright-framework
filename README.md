@@ -60,14 +60,15 @@ pnpm typecheck      # tsc --noEmit
 
 ## CI
 
-`.github/workflows/playwright.yml` runs on pull requests to `main`, weekly against `main`, and on manual dispatch. It has two jobs:
+Three workflows in `.github/workflows/`:
 
-- `lint`: ESLint, Prettier check and type-check.
-- `test`: the Playwright suite, with the HTML report uploaded as an artifact. It reads `SERVICE_ACCOUNT_EMAIL` and `SERVICE_ACCOUNT_PASSWORD` from repository secrets.
+- `ci.yml` (CI): runs on pull requests to `main`. It lints (ESLint, Prettier check, type-check), runs the Playwright suite, and reports a single `CI` status check that passes only if both succeed.
+- `test.yml` (Test): runs the Playwright suite weekly against `main` and on manual dispatch.
+- `playwright.yml` (Playwright): the reusable workflow both of the above call. It runs the suite, uploads the HTML report as an artifact, and reads `SERVICE_ACCOUNT_EMAIL` and `SERVICE_ACCOUNT_PASSWORD` from repository secrets.
 
 ## Contributing
 
-Pull requests are welcome. Run `pnpm lint`, `pnpm format` and `pnpm typecheck` before opening one. Secrets are not available to pull requests from forks, so the `test` job will fail on them; run the suite locally instead.
+Pull requests are welcome. Run `pnpm lint`, `pnpm format` and `pnpm typecheck` before opening one.
 
 ## License
 

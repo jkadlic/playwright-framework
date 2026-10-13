@@ -1,28 +1,12 @@
-name: Playwright Tests
+name: Playwright
 on:
-  pull_request:
-    branches: [main]
-  schedule:
-    # Mondays at 06:00 UTC, against main
-    - cron: "0 6 * * 1"
-  workflow_dispatch:
+  workflow_call:
+    secrets:
+      SERVICE_ACCOUNT_EMAIL:
+        required: true
+      SERVICE_ACCOUNT_PASSWORD:
+        required: true
 jobs:
-  lint:
-    timeout-minutes: 10
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-      - name: Install dependencies
-        run: npm install -g pnpm && pnpm install
-      - name: Lint
-        run: pnpm lint
-      - name: Check formatting
-        run: pnpm format:check
-      - name: Type-check
-        run: pnpm typecheck
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
