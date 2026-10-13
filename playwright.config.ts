@@ -2,9 +2,9 @@ import { defineConfig, devices } from '@playwright/test';
 
 import { config } from 'dotenv';
 import { resolve, join } from 'path';
-config({ path: resolve(__dirname, '.env') });
+config({ path: resolve(import.meta.dirname, '.env') });
 
-const CONTEXT_STATE_PATH: string = join(__dirname, "./.context/state.json");
+const CONTEXT_STATE_PATH: string = join(import.meta.dirname, "./.context/state.json");
 
 export default defineConfig({
   testDir: './tests',
@@ -15,7 +15,7 @@ export default defineConfig({
   /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
   /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
+  ...(process.env.CI ? { workers: 1 } : {}),
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */

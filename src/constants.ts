@@ -7,7 +7,7 @@ export enum TimeoutTypes {
     CheckState
 }
 
-export const Timeout: Record<string, number> = {
+export const Timeout: Record<TimeoutTypes, number> = {
     [TimeoutTypes.LoadPage]: 10000,
     [TimeoutTypes.LoadComponent]: 5000,
     [TimeoutTypes.CheckState]: 3000,

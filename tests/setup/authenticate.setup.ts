@@ -1,19 +1,20 @@
-import {test as setup} from '@playwright/test';
+import {authFixtures as setup} from '../../fixtures/auth';
 import HomePage from "../../src/ui/pages/home.page";
 import LoginPage from "../../src/ui/pages/login.page";
-import {join} from "path";
+import { join } from "node:path";
 
-const CONTEXT_STATE_PATH: string = join(__dirname, "../../.context/state.json");
+const CONTEXT_STATE_PATH: string = join(import.meta.dirname, "../../.context/state.json");
 
-setup("authenticate", async ({ page }) => {
+setup("authenticate", async ({ page, credentials }) => {
     
     let home = new HomePage(page);
     await home.goTo();
     await home.nav.goToLogin();
     
     let login = new LoginPage(page);
+
     // TODO: Load environment variables in fixture where they can be validated.
-    await login.login(process.env.SERVICE_ACCOUNT_EMAIL, process.env.SERVICE_ACCOUNT_PASSWORD);
+    await login.login(credentials.email, credentials.password);
 
     await page.context().storageState({ path: CONTEXT_STATE_PATH });
 });

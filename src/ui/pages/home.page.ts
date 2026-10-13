@@ -1,5 +1,5 @@
 import type { Locator, Page} from "@playwright/test";
-import { IRoutablePage } from "../page.interface";
+import type { IRoutablePage } from "../page.interface";
 import {BASE_URL} from "../../constants";
 import NavComponent from "../components/nav.component";
 import GalleryComponent from "../components/gallery.component";

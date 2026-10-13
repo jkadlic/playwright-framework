@@ -1,6 +1,6 @@
 import type {Locator, Page} from "@playwright/test";
-import {IPage} from "../page.interface";
-import {Timeout} from "../../constants";
+import type {IPage} from "../page.interface";
+import {Timeout, TimeoutTypes} from "../../constants";
 
 export default class CartPage implements IPage {
     
@@ -15,10 +15,10 @@ export default class CartPage implements IPage {
     }
 
     public async waitFor(): Promise<void> {
-        await this.cart.waitFor({ state: "visible", timeout: Timeout.TimeoutStateCheck });
+        await this.cart.waitFor({ state: "visible", timeout: Timeout[TimeoutTypes.CheckState] });
     }
     
     public async isCartEmpty(): Promise<void> {
-        await this.emptyCartCard.isVisible({ timeout: Timeout.TimeoutStateCheck });
+        await this.emptyCartCard.isVisible({ timeout: Timeout[TimeoutTypes.CheckState] });
     }
 }

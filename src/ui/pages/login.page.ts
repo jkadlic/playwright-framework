@@ -1,4 +1,4 @@
-import {IPage} from "../page.interface";
+import type {IPage} from "../page.interface";
 import type {Locator, Page} from "@playwright/test";
 import {Timeout, TimeoutTypes} from "../../constants";
 

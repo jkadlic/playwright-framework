@@ -1,5 +1,5 @@
 {
-  "name": "playwright-enterprise-automation",
+  "name": "playwright-framework",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,10 +7,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "packageManager": "pnpm@10.4.1",
   "devDependencies": {
     "@playwright/test": "^1.57.0",
-    "@types/node": "^24.10.1"
+    "@types/node": "^24.10.1",
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "dotenv": "^17.2.3"
