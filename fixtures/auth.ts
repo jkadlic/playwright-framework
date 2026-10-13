@@ -1,4 +1,4 @@
-import { test as base } from "@playwright/test"
+import { test as base } from "@playwright/test";
 
 export type AuthCredentials = {
     email: string;
@@ -10,17 +10,15 @@ export type AuthFixtures = {
 };
 
 export const authFixtures = base.extend<AuthFixtures>({
-
     credentials: async ({}, use) => {
-
-        var email = process.env.SERVICE_ACCOUNT_EMAIL;
+        const email = process.env.SERVICE_ACCOUNT_EMAIL;
         if (email == "" || email == undefined)
             throw new Error("Invalid or missing environment variable provided 'SERVICE_ACCOUNT_EMAIL'.");
 
-        var password = process.env.SERVICE_ACCOUNT_PASSWORD;
+        const password = process.env.SERVICE_ACCOUNT_PASSWORD;
         if (password == "" || password == undefined)
             throw new Error("Invalid or missing environment variable provided 'SERVICE_ACCOUNT_PASSWORD'.");
 
-        await use({ email, password })
-    }
-})
+        await use({ email, password });
+    },
+});

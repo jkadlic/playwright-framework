@@ -1,4 +1,3 @@
-
 export interface IPage {
     waitFor(): Promise<void>;
 }
