@@ -1,10 +1,9 @@
-
 export const BASE_URL: string = "https://automationexercise.com/";
 
 export enum TimeoutTypes {
     LoadPage,
     LoadComponent,
-    CheckState
+    CheckState,
 }
 
 export const Timeout: Record<TimeoutTypes, number> = {
